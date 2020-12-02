@@ -2,8 +2,12 @@
 - name: Verify
   hosts: all
   tasks:
+    - name: Linux | Podman should be functionnal
+      command: podman --version
+      register: podman_result
+
     - name: Linux | Verify commands outputs
       assert:
         that:
-          - true
+          - podman_result.rc == 0
         success_msg: "All tests passed"
