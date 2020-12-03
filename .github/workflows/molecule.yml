@@ -8,8 +8,8 @@ on:
 
 jobs:
   build:
-    name: ${{ matrix.image }} terraform ${{ matrix.terraform_version }}
-    runs-on: ubuntu-18.04
+    name: ${{ matrix.image }}
+    runs-on: ubuntu-20.04
     strategy:
       fail-fast: false
       matrix:
