@@ -25,6 +25,8 @@ jobs:
           - ansible-fedora:28
           - ansible-fedora:27
           - ansible-oraclelinux:8
+          - ansible-ubuntu:18.04
+          - ansible-ubuntu:20.04
 
     steps:
       - name: Checkout repository
