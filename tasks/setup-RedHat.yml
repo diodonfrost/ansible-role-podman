@@ -1,0 +1,25 @@
+---
+- name: Amazonlinux 2 | Install kubic repository
+  yum_repository:
+    name: devel_kubic_libcontainers_testing
+    description: kubic-repository
+    baseurl: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/CentOS_7/
+    gpgkey: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/CentOS_7/repodata/repomd.xml.key
+    gpgcheck: yes
+    enabled: yes
+  when: ansible_distribution == "Amazon"
+
+- name: Amazonlinux 2 | Install yum copr plugin
+  yum:
+    name: yum-plugin-copr
+    state: present
+  notify: Enable lsm5/container-selinux
+  when: ansible_distribution == "Amazon"
+
+- name: Amazonlinux 2 | Flush handler
+  meta: flush_handlers
+
+- name: RedHat | Install Podman
+  package:
+    name: "{{ podman_package }}"
+    state: present

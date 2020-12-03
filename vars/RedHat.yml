@@ -1,0 +1,4 @@
+---
+# Variable for RedHat system
+
+podman_package: podman
