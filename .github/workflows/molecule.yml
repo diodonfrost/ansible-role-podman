@@ -17,6 +17,7 @@ jobs:
           - ansible-amazonlinux:2
           - ansible-centos:8
           - ansible-centos:7
+          - ansible-debian:10
           - ansible-fedora:32
           - ansible-fedora:31
           - ansible-fedora:30

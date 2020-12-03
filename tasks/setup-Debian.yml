@@ -1,0 +1,21 @@
+---
+- name: Debian 10 | Install kubic apt key
+  apt_key:
+    url: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/Debian_10/Release.key
+    state: present
+  when:
+    - ansible_distribution == "Debian"
+    - ansible_distribution_major_version == "10"
+
+- name: Debian 10 | Install kubic repository
+  apt_repository:
+    repo: "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/Debian_10/ /"
+    state: present
+  when:
+    - ansible_distribution == "Debian"
+    - ansible_distribution_major_version == "10"
+
+- name: Debian/Ubuntu | Install Podman
+  package:
+    name: "{{ podman_package }}"
+    state: present
