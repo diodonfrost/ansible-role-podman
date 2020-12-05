@@ -24,6 +24,10 @@ jobs:
           - ansible-fedora:29
           - ansible-fedora:28
           - ansible-fedora:27
+          - ansible-opensuse:leap
+          - ansible-opensuse:tumbleweed
+          - ansible-opensuse:15
+          - ansible-opensuse:15.1
           - ansible-oraclelinux:8
           - ansible-ubuntu:18.04
           - ansible-ubuntu:20.04
