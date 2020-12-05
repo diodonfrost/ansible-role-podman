@@ -18,6 +18,25 @@ galaxy_info:
     - name: Amazon
       versions:
         - Candidate
+    - name: Debian
+      versions:
+        - buster
+    - name: Ubuntu
+      versions:
+        - focal
+        - disco
+        - bionic
+    - name: opensuse
+      versions:
+        - 15.0
+        - 15.1
+        - 15.2
+    - name: ArchLinux
+      versions:
+        - any
+    - name: Gentoo
+      versions:
+        - any
 
   galaxy_tags:
     - system
