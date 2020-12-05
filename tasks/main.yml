@@ -4,5 +4,12 @@
 - name: Include OS specific variables.
   include_vars: "{{ ansible_os_family }}.yml"
 
-- name: Install Podman
+- name: Linux | Install Podman
   include_tasks: "setup-{{ ansible_os_family }}.yml"
+  when: ansible_facts['os_family'] == "RedHat" or
+        ansible_facts['os_family'] == "Debian"
+
+- name: Linux | Install Podman
+  package:
+    name: "{{ podman_package }}"
+    state: present

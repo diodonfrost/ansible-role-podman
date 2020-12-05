@@ -30,8 +30,3 @@
   when:
     - ansible_distribution == "Ubuntu"
     - ansible_distribution_version|float <= 20.04
-
-- name: Debian/Ubuntu | Install Podman
-  package:
-    name: "{{ podman_package }}"
-    state: present

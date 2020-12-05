@@ -18,8 +18,3 @@
 
 - name: Amazonlinux 2 | Flush handler
   meta: flush_handlers
-
-- name: RedHat | Install Podman
-  package:
-    name: "{{ podman_package }}"
-    state: present
