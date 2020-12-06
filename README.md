@@ -1,38 +1,80 @@
-Role Name
-=========
+Ansible Role: Podman
+====================
 
-A brief description of the role goes here.
+[![molecule](https://github.com/diodonfrost/ansible-role-podman/workflows/molecule/badge.svg)](https://github.com/diodonfrost/ansible-role-podman/actions)
+
+An Ansible Role that installs Podman on Linux.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+None.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Available variables are listed below, along with default values (see `defaults/main.yml`):
+
+    # A list of users who will be used podman.
+    rootless_users: []
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+None.
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+This is a sample playbook file for deploying the Ansible Galaxy podman role and installing podman.
 
-    - hosts: servers
+    - hosts: all
       roles:
-         - { role: username.rolename, x: 42 }
+         - diodonfrost.podman
+
+Local Testing
+-------------
+
+This project uses [Molecule](http://molecule.readthedocs.io/) to aid in the
+development and testing.
+
+To develop or test you'll need to have installed the following:
+
+* Linux (e.g. [Ubuntu](http://www.ubuntu.com/))
+* [Docker](https://www.docker.com/)
+* [Python](https://www.python.org/) (including python-pip)
+* [Ansible](https://www.ansible.com/)
+* [Molecule](http://molecule.readthedocs.io/)
+
+Testing with Docker
+-------------------
+
+```shell
+# Test ansible role with centos 8
+molecule test
+
+# Test ansible role with ubuntu 20.04
+image=ansible-ubuntu:20.04 molecule test
+
+# Test ansible role with alpine latest
+image=ansible-alpine:rolling molecule test
+
+# Create centos 8 instance
+molecule create
+
+# Apply role on centos 8 instance
+molecule converge
+
+# Launch tests on centos 8 instance
+molecule verify
+```
 
 License
 -------
 
-BSD
+Apache 2.0
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+This role was created in 2020 by diodonfrost.
