@@ -13,3 +13,7 @@
   package:
     name: "{{ podman_package }}"
     state: present
+
+- name: Linux | Configure rootless users
+  include_tasks: "rootless.yml"
+  when: rootless_users | length > 0

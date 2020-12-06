@@ -1,2 +1,5 @@
 ---
 # defaults file for ansible-role-podman
+
+# A list of users who will be used podman.
+rootless_users: []

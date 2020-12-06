@@ -1,0 +1,11 @@
+---
+- name: Linux | Allow rootless users to use podman
+  copy:
+    content: "{{ item[1] }}:165536:65536"
+    dest: "{{ item[0] }}"
+    owner: root
+    group: root
+    mode: '0644'
+  with_nested:
+    - ["/etc/subuid", "/etc/subgid"]
+    - "{{ rootless_users }}"
