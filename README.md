@@ -46,8 +46,7 @@ To develop or test you'll need to have installed the following:
 * [Ansible](https://www.ansible.com/)
 * [Molecule](http://molecule.readthedocs.io/)
 
-Testing with Docker
--------------------
+### Testing with Docker ###
 
 ```shell
 # Test ansible role with centos 8
