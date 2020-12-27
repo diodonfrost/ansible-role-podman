@@ -3,3 +3,8 @@
 
 - name: Enable lsm5/container-selinux
   command: yum -y copr enable lsm5/container-selinux
+
+
+- name: Debian | update apt repository cache
+  apt:
+    update_cache: yes

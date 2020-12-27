@@ -1,4 +1,27 @@
 ---
+- name: Debian 10 | Install backport repository
+  lineinfile:
+    path: /etc/apt/sources.list
+    regexp: '^deb http://deb.debian.org/debian buster-backports main'
+    line: deb http://deb.debian.org/debian buster-backports main
+  notify: Debian | update apt repository cache
+  when:
+    - ansible_distribution == "Debian"
+    - ansible_distribution_major_version == "10"
+
+- name: Ansible | Flush handlers
+  meta: flush_handlers
+
+# https://github.com/containers/podman/issues/7508#issuecomment-746245356
+- name: Debian 10 | Install libseccomp-dev from debian backport repos
+  apt:
+    name: libseccomp-dev
+    default_release: buster-backports
+    state: present
+  when:
+    - ansible_distribution == "Debian"
+    - ansible_distribution_major_version == "10"
+
 - name: Debian 10 | Install kubic apt key
   apt_key:
     url: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/Debian_10/Release.key
