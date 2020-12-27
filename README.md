@@ -2,6 +2,7 @@ Ansible Role: Podman
 ====================
 
 [![molecule](https://github.com/diodonfrost/ansible-role-podman/workflows/molecule/badge.svg)](https://github.com/diodonfrost/ansible-role-podman/actions)
+[![Ansible Galaxy](https://img.shields.io/badge/galaxy-diodonfrost.podman-660198.svg)](https://galaxy.ansible.com/diodonfrost/podman)
 
 An Ansible Role that installs Podman on Linux.
 
