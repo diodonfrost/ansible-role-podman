@@ -5,9 +5,6 @@
     regexp: '^deb http://deb.debian.org/debian buster-backports main'
     line: deb http://deb.debian.org/debian buster-backports main
   notify: Debian | update apt repository cache
-  when:
-    - ansible_distribution == "Debian"
-    - ansible_distribution_major_version == "10"
 
 - name: Ansible | Flush handlers
   meta: flush_handlers
@@ -18,38 +15,13 @@
     name: libseccomp-dev
     default_release: buster-backports
     state: present
-  when:
-    - ansible_distribution == "Debian"
-    - ansible_distribution_major_version == "10"
 
 - name: Debian 10 | Install kubic apt key
   apt_key:
     url: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/Debian_10/Release.key
     state: present
-  when:
-    - ansible_distribution == "Debian"
-    - ansible_distribution_major_version == "10"
 
 - name: Debian 10 | Install kubic repository
   apt_repository:
     repo: "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/Debian_10/ /"
     state: present
-  when:
-    - ansible_distribution == "Debian"
-    - ansible_distribution_major_version == "10"
-
-- name: Ubuntu < 20.04 | Install kubic apt key
-  apt_key:
-    url: "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_{{ ansible_distribution_version }}/Release.key"
-    state: present
-  when:
-    - ansible_distribution == "Ubuntu"
-    - ansible_distribution_version|float <= 20.04
-
-- name: Ubuntu < 20.04 | Install kubic repository
-  apt_repository:
-    repo: "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_{{ ansible_distribution_version }}/ /"
-    state: present
-  when:
-    - ansible_distribution == "Ubuntu"
-    - ansible_distribution_version|float <= 20.04
