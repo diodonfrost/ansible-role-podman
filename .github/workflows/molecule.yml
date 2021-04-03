@@ -15,7 +15,7 @@ jobs:
       matrix:
         image:
           - ansible-archlinux:latest
-          - ansible-amazonlinux:2
+        # - ansible-amazonlinux:2
           - ansible-centos:8
           - ansible-centos:7
           - ansible-debian:10
