@@ -5,9 +5,10 @@
   include_vars: "{{ ansible_os_family }}.yml"
 
 - name: Linux | Install Podman
-  include_tasks: "setup-{{ ansible_os_family }}.yml"
-  when: ansible_facts['os_family'] == "RedHat" or
-        ansible_facts['os_family'] == "Debian"
+  include_tasks: "setup-{{ ansible_distribution }}.yml"
+  when: ansible_distribution == "Amzonlinux" or
+        ansible_distribution == "Debian" or
+        ansible_distribution == "Ubuntu"
 
 - name: Linux | Install Podman
   package:

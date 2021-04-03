@@ -1,0 +1,12 @@
+---
+- name: Ubuntu < 20.04 | Install kubic apt key
+  apt_key:
+    url: "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_{{ ansible_distribution_version }}/Release.key"
+    state: present
+  when: ansible_distribution_version|float <= 20.04
+
+- name: Ubuntu < 20.04 | Install kubic repository
+  apt_repository:
+    repo: "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_{{ ansible_distribution_version }}/ /"
+    state: present
+  when: ansible_distribution_version|float <= 20.04

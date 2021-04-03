@@ -14,24 +14,24 @@ jobs:
       fail-fast: false
       matrix:
         image:
-          - ansible-archlinux:latest
-        # - ansible-amazonlinux:2
-          - ansible-centos:8
-          - ansible-centos:7
-          - ansible-debian:10
-          - ansible-fedora:32
-          - ansible-fedora:31
-          - ansible-fedora:30
-          - ansible-fedora:29
-          - ansible-fedora:28
-          - ansible-fedora:27
-          - ansible-opensuse:leap
-          - ansible-opensuse:tumbleweed
-          - ansible-opensuse:15
-          - ansible-opensuse:15.1
-          - ansible-oraclelinux:8
-          - ansible-ubuntu:18.04
-          - ansible-ubuntu:20.04
+          - archlinux:latest
+          #- amazonlinux:2
+          - centos:8
+          - centos:7
+          - debian:10
+          - fedora:32
+          - fedora:31
+          - fedora:30
+          - fedora:29
+          - fedora:28
+          - fedora:27
+          - opensuse:leap
+          - opensuse:tumbleweed
+          - opensuse:15
+          - opensuse:15.1
+          - oraclelinux:8
+          - ubuntu:18.04
+          - ubuntu:20.04
 
     steps:
       - name: Checkout repository
@@ -45,14 +45,14 @@ jobs:
       - name: Install Molecule
         run: |
           python -m pip install --upgrade pip
-          pip install ansible ansible-lint molecule-docker docker
+          pip install -r requirements-dev.txt
 
       - name: Test Ansible role
         run: molecule test
         env:
-          image: ${{ matrix.image }}
+          image: ansible-${{ matrix.image }}
 
       - name: Test Ansible role with check_mode enable
         run: molecule check
         env:
-          image: ${{ matrix.image }}
+          image: ansible-${{ matrix.image }}
