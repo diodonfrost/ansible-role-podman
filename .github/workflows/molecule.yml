@@ -10,37 +10,38 @@ jobs:
   build:
     name: ${{ matrix.image }}
     runs-on: ubuntu-20.04
+    env:
+      docker_namepsace: ghcr.io/diodonfrost/docker-ansible
     strategy:
       fail-fast: false
       matrix:
         image:
-          - archlinux:latest
-          #- amazonlinux:2
-          - centos:8
+          - almalinux:8
+          - rockylinux:8
           - centos:7
+          - fedora:39
+          - fedora:38
+          - fedora:37
+          - fedora:36
+          - ubuntu:22.04
+          - ubuntu:20.04
+          - debian:11
           - debian:10
-          - fedora:32
-          - fedora:31
-          - fedora:30
-          - fedora:29
-          - fedora:28
-          - fedora:27
+          - oraclelinux:9
+          - oraclelinux:8
           - opensuse:leap
           - opensuse:tumbleweed
-          - opensuse:15
-          - opensuse:15.1
-          - oraclelinux:8
-          - ubuntu:18.04
-          - ubuntu:20.04
+          - archlinux:latest
+          - alpine:latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Set up Python 3.8
-        uses: actions/setup-python@v2
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.8
+          python-version: 3.9
 
       - name: Install Molecule
         run: |
@@ -50,9 +51,11 @@ jobs:
       - name: Test Ansible role
         run: molecule test
         env:
+          namespace: ${{ env.docker_namepsace }}
           image: ansible-${{ matrix.image }}
 
       - name: Test Ansible role with check_mode enable
         run: molecule check
         env:
+          namespace: ${{ env.docker_namepsace }}
           image: ansible-${{ matrix.image }}
