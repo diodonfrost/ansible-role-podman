@@ -1,4 +1,4 @@
 ---
 # Variable for Gentoo system
 
-podman_package: app-emulation/libpod
+podman_package: app-containers/podman

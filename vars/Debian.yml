@@ -1,4 +1,0 @@
----
-# Variable for Debian system
-
-podman_package: podman

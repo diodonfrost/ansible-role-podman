@@ -2,13 +2,19 @@
 # tasks file for ansible-role-podman
 
 - name: Include OS specific variables.
-  include_vars: "{{ ansible_os_family }}.yml"
+  include_vars: "{{ lookup('ansible.builtin.first_found', params) }}"
+  vars:
+    params:
+      files:
+        - "{{ ansible_os_family }}.yml"
+        - main.yml
+      paths:
+        - 'vars'
 
 - name: Linux | Install Podman
   include_tasks: "setup-{{ ansible_distribution }}.yml"
-  when: ansible_distribution == "Amzonlinux" or
-        ansible_distribution == "Debian" or
-        ansible_distribution == "Ubuntu"
+  when: (ansible_facts['distribution'] == "Debian" and ansible_facts['distribution_major_version'] == "10") or
+        (ansible_facts['distribution'] == "Ubuntu" and ansible_facts['distribution_version'] == "20.04")
 
 - name: Linux | Install Podman
   package:
