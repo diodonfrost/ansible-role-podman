@@ -1,0 +1,10 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+  tasks:
+    - name: "Include ansible-role-podman"
+      include_role:
+        name: "ansible-role-podman"
+      vars:
+        rootless_users: "{{ lookup('env', 'rootless_users') | default([], true) }}"
